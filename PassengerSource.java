@@ -16,10 +16,10 @@ public class PassengerSource implements Actor
     private City city;
     private TaxiCompany company;
     private Random rand;
-    //private static final double CREATION_PROBABILITY = 0.06;
-    private static final double CREATION_PROBABILITY = 0.35;
-    private int missedPickups;
-
+    private static final double CREATION_PROBABILITY = 0.06;
+    private int missedPickups; 
+    private int jarak=0;
+    private int harga;
     /**
      * Constructor for objects of class PassengerSource.
      * @param city The city. Must not be null.
@@ -50,8 +50,12 @@ public class PassengerSource implements Actor
     {
         if(rand.nextDouble() <= CREATION_PROBABILITY) {
             Passenger passenger = createPassenger();
+            this.jarak += passenger.getDistance();
             if(company.requestPickup(passenger)) {
+                city.removeItem(harga);
                 city.addItem(passenger);
+                this.harga = jarak * 3000;
+                city.addItem(harga);
             }
             else {
                 missedPickups++;
@@ -67,7 +71,8 @@ public class PassengerSource implements Actor
     {
         return missedPickups;
     }
-
+    
+    
     /**
      * Create a new passenger with distinct pickup and
      * destination locations.
@@ -77,16 +82,15 @@ public class PassengerSource implements Actor
     {
         int cityWidth = city.getWidth();
         int cityHeight = city.getHeight();
-
         Location pickupLocation =
-                    new Location(rand.nextInt(cityWidth),
-                                 rand.nextInt(cityHeight));
+                    new Location(rand.nextInt(cityWidth),rand.nextInt(cityHeight));
         Location destination;
         do{
             destination =
-                    new Location(rand.nextInt(cityWidth),
-                                 rand.nextInt(cityHeight));
+                    new Location(rand.nextInt(cityWidth-1),
+                                 rand.nextInt(cityHeight-1));
         } while(pickupLocation.equals(destination));
+        
         return new Passenger(pickupLocation, destination);
     }
 }

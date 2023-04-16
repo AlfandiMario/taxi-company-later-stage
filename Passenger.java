@@ -13,6 +13,7 @@ public class Passenger implements DrawableItem
     private Location pickup;
     private Location destination;
     private Image image;
+    private int jarak;
 
     /**
      * Constructor for objects of class Passenger
@@ -28,11 +29,12 @@ public class Passenger implements DrawableItem
         if(destination == null) {
             throw new NullPointerException("Destination location");
         }
+        this.jarak = pickup.distance(destination);
         this.pickup = pickup;
         this.destination = destination;
         // Load the image used to represent a person.
         image = new ImageIcon(getClass().getResource(
-                              "images/human.png")).getImage();
+                              "images/person.jpg")).getImage();
     }
     
     /**
@@ -41,9 +43,12 @@ public class Passenger implements DrawableItem
     public String toString()
     {
         return "Passenger travelling from " +
-               pickup + " to " + destination;
+               jarak + " to " + destination;
     }
-
+    public int getDistance()
+    {
+        return jarak;
+    }
     /**
      * @return The image to be displayed on a GUI.
      */
