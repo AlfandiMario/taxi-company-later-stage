@@ -121,13 +121,7 @@ public class CityGUI extends JFrame implements Actor
             g.setColor(Color.blue);
             g.fillRect(0, 0, size.width-150, size.height);
             g.setColor(Color.red);
-            for(int i = 0, x = 0; x < size.width-150; i++, x = i * xScale) {
-                g.drawLine(x, 0, x, size.height );
-            }
-            for(int i = 0, y = 0; y < size.height; i++, y = i * yScale) {
-                g.drawLine(0, y, size.width-150 , y);
             
-            }
             g.setColor(Color.white);
             g.fillRect(size.width-150, 0, size.width, size.height);
             g.setColor(Color.black);
