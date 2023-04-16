@@ -17,22 +17,22 @@ public class CityGUI extends JFrame implements Actor
     public static final int CITY_VIEW_HEIGHT = 600;
     private City city;
     private CityView cityView;
-    private Location lokasi;
-    
+    private PassengerSource psg;
     /**
      * Constructor for objects of class CityGUI
      * @param city The city whose state is to be displayed.
      */
-    public CityGUI(City city)
+    public CityGUI(City city,PassengerSource psg)
     {
         this.city = city;
+        this.psg = psg;
         cityView = new CityView(city.getWidth(), city.getHeight());
         getContentPane().add(cityView);
-        setTitle("Taxiville");
+        setTitle("Kelompok 1");
         setSize(CITY_VIEW_WIDTH, CITY_VIEW_HEIGHT);
         setVisible(true);
         cityView.preparePaint();
-        cityView.repaint();    
+        cityView.repaint(); 
     }
     
     /**
@@ -49,8 +49,12 @@ public class CityGUI extends JFrame implements Actor
                 Location location = item.getLocation();
                 cityView.drawImage(location.getX(), location.getY(), item.getImage());
             }
+            else{
+                cityView.drawString(obj.toString());
+            }
         }
         cityView.repaint();    
+        
     }
     
     /**
@@ -70,7 +74,7 @@ public class CityGUI extends JFrame implements Actor
         private Dimension size;
         private Graphics g;
         private Image cityImage;
-
+        private String jarak;
         /**
          * Create a new CityView component.
          */
@@ -78,8 +82,11 @@ public class CityGUI extends JFrame implements Actor
         {
             cityWidth = width;
             cityHeight = height;
-            setBackground(Color.yellow);
+            setBackground(Color.white);
             size = new Dimension(0, 0);
+            this.jarak= psg.getDistance();
+
+
         }
 
         /**
@@ -101,8 +108,8 @@ public class CityGUI extends JFrame implements Actor
                 size = getSize();
                 cityImage = cityView.createImage(size.width, size.height);
                 g = cityImage.getGraphics();
-
-                xScale = size.width / cityWidth;
+                
+                xScale = (size.width-150) / cityWidth;
                 if(xScale < 1) {
                     xScale = VIEW_SCALING_FACTOR;
                 }
@@ -111,33 +118,37 @@ public class CityGUI extends JFrame implements Actor
                     yScale = VIEW_SCALING_FACTOR;
                 }
             }
-            g.setColor(Color.gray);
-            int lebarKota = size.width/2;
-            int panjangKota = size.height/2;
-            
-            g.fillRect(50, 50, lebarKota, panjangKota);
-            g.setColor(Color.gray);
-            for(int i = 0, x = 0; x < size.width; i++, x = i * xScale) {
-                g.drawLine(x, 0, x, size.height - 1);
+            g.setColor(Color.blue);
+            g.fillRect(0, 0, size.width-150, size.height);
+            g.setColor(Color.red);
+            for(int i = 0, x = 0; x < size.width-150; i++, x = i * xScale) {
+                g.drawLine(x, 0, x, size.height );
             }
             for(int i = 0, y = 0; y < size.height; i++, y = i * yScale) {
-                g.drawLine(0, y, size.width - 1, y);
-            }
+                g.drawLine(0, y, size.width-150 , y);
             
-            g.drawString("String", 10, 20);
+            }
+            g.setColor(Color.white);
+            g.fillRect(size.width-150, 0, size.width, size.height);
+            g.setColor(Color.black);
+            g.drawString("Queen Gambit Company",size.width-149 ,15);
+            g.drawString("Tarif : Rp.3000/km",size.width-149 ,30);
         }
-        
-        
         
         /**
          * Draw the image for a particular item.
          */
         public void drawImage(int x, int y, Image image)
-        {
+        { 
             g.drawImage(image, x * xScale + 1, y * yScale + 1,
                         xScale - 1, yScale - 1, this);
         }
-
+        public void drawString( String text)
+        {
+            String textFull = "Profit : Rp."+ text;
+            g.setColor(Color.black);
+            g.drawString(textFull,size.width-149 ,45);
+        }
         /**
          * The city view component needs to be redisplayed. Copy the
          * internal image to screen.

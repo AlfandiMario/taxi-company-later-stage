@@ -21,8 +21,7 @@ public class TaxiCompany
     // they are to pick up.
     private Map<Vehicle, Passenger> assignments;
 
-    private static final int NUMBER_OF_TAXIS = 15;
-    private static final int NUMBER_OF_SHUTTLE =5;
+    private static final int NUMBER_OF_TAXIS = 3;
 
     /**
      * @param city The city.
@@ -126,13 +125,5 @@ public class TaxiCompany
             vehicles.add(taxi);
             city.addItem(taxi);
         }
-        for(int i = 0; i < NUMBER_OF_SHUTTLE; i++){
-            Shuttle shuttle = new Shuttle(this,
-                         new Location(rand.nextInt(cityWidth),
-                                      rand.nextInt(cityHeight)));
-            vehicles.add(shuttle);
-            city.addItem(shuttle);                          
-        }
-    }
+   }
 }
-

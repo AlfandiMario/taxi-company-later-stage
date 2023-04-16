@@ -13,8 +13,9 @@ public class City
     private List<Object> items;
     private int width;
     private int height;
+    private List<Object> harga;
     
-    private static final int DEFAULT_WIDTH = 30;
+    private static final int DEFAULT_WIDTH = 10;
     private static final int DEFAULT_HEIGHT = 30;
 
     /**
@@ -55,16 +56,17 @@ public class City
         return items.iterator();
     }
 
+    public Iterator getHarga()
+    {
+        return harga.iterator();
+    }
+    
     /**
      * Add the given item to the city's collection.
      * @param item The item to be added.
      */
     public void addItem(Object item)
     {
-        if(items.contains(item)) {
-            throw new IllegalArgumentException(
-                item + " already recorded in the city.");
-        }
         items.add(item);
     }
 
@@ -74,10 +76,7 @@ public class City
      */
     public void removeItem(Object item)
     {
-        if(!items.remove(item)) {
-            throw new IllegalArgumentException(
-                        item + " is not in the city.");
-        }
+        items.remove(item);
     }
         
     /**
