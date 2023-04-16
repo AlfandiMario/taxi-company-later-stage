@@ -112,6 +112,7 @@ public class CityGUI extends JFrame implements Actor
                     yScale = VIEW_SCALING_FACTOR;
                 }
             }
+            // Penambahan tulisan di samping GUI
             g.setColor(Color.white);
             g.fillRect(0, 0, size.width-150, size.height);
             g.setColor(Color.red);
