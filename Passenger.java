@@ -34,7 +34,7 @@ public class Passenger implements DrawableItem
         this.destination = destination;
         // Load the image used to represent a person.
         image = new ImageIcon(getClass().getResource(
-                              "images/persons.jpg")).getImage();
+                              "images/person.jpg")).getImage();
     }
     
     /**

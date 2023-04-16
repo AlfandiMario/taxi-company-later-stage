@@ -17,15 +17,13 @@ public class CityGUI extends JFrame implements Actor
     public static final int CITY_VIEW_HEIGHT = 600;
     private City city;
     private CityView cityView;
-    private PassengerSource psg;
     /**
      * Constructor for objects of class CityGUI
      * @param city The city whose state is to be displayed.
      */
-    public CityGUI(City city,PassengerSource psg)
+    public CityGUI(City city)
     {
         this.city = city;
-        this.psg = psg;
         cityView = new CityView(city.getWidth(), city.getHeight());
         getContentPane().add(cityView);
         setTitle("Kelompok 1");
@@ -74,7 +72,6 @@ public class CityGUI extends JFrame implements Actor
         private Dimension size;
         private Graphics g;
         private Image cityImage;
-        private String jarak;
         /**
          * Create a new CityView component.
          */
@@ -84,9 +81,6 @@ public class CityGUI extends JFrame implements Actor
             cityHeight = height;
             setBackground(Color.white);
             size = new Dimension(0, 0);
-            this.jarak= psg.getDistance();
-
-
         }
 
         /**
@@ -118,9 +112,9 @@ public class CityGUI extends JFrame implements Actor
                     yScale = VIEW_SCALING_FACTOR;
                 }
             }
-            g.setColor(Color.blue);
+            g.setColor(Color.white);
             g.fillRect(0, 0, size.width-150, size.height);
-            g.setColor(Color.red);
+            g.setColor(Color.black);
             for(int i = 0, x = 0; x < size.width-150; i++, x = i * xScale) {
                 g.drawLine(x, 0, x, size.height );
             }
