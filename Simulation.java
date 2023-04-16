@@ -26,7 +26,7 @@ public class Simulation
         
         actors.addAll(company.getVehicles());
         actors.add(source);
-        actors.add(new CityGUI(city,source));
+        actors.add(new CityGUI(city));
     }
     
     /**

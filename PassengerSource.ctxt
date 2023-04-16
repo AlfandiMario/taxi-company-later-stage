@@ -13,6 +13,4 @@ comment3.text=\r\n\ @return\ The\ number\ of\ passengers\ for\ whom\ a\ pickup\r
 comment4.params=
 comment4.target=Passenger\ createPassenger()
 comment4.text=\r\n\ Create\ a\ new\ passenger\ with\ distinct\ pickup\ and\r\n\ destination\ locations.\r\n\ @return\ The\ created\ passenger.\r\n
-comment5.params=
-comment5.target=java.lang.String\ getDistance()
-numComments=6
+numComments=5

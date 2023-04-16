@@ -93,9 +93,4 @@ public class PassengerSource implements Actor
         
         return new Passenger(pickupLocation, destination);
     }
-    public String getDistance()
-    {
-        String distances = Integer.toString(jarak);
-        return distances;
-    }
 }
